@@ -23,11 +23,19 @@ class ForagingTrackerConfig {
     @ConfigLink(owner = ForagingTrackerConfig::class, field = "enabled")
     val position: Position = Position(-300, 300)
 
+    enum class TreeGiftDisplayMode(val displayName: String) {
+        FULL_GIFT("Full Gift"),
+        COMPACT_GIFT("Compact Gift"),
+        NO_GIFT("No Gift");
+
+        override fun toString() = displayName
+    }
+
     @Expose
-    @ConfigOption(name = "Compact Gifts", desc = "Compact the chat messages when you receive a tree gift.")
+    @ConfigOption(name = "Display Tree Gifts", desc = "Change how the Tree Gift messages are displayed in chat.")
     @ConfigEditorBoolean
     @FeatureToggle
-    var compactGiftChats: Boolean = true
+    var displayTreeGifts: TreeGiftDisplayMode = TreeGiftDisplayMode.COMPACT_GIFT
 
 
     @Expose
